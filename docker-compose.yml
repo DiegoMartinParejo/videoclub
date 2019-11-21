@@ -21,6 +21,8 @@ volumes:
     driver: ${VOLUMES_DRIVER}
   neo4j:
     driver: ${VOLUMES_DRIVER}
+  mariadb_data:
+    driver: ${VOLUMES_DRIVER}
   mariadb:
     driver: ${VOLUMES_DRIVER}
   mongo:
@@ -420,7 +422,7 @@ services:
           - no_proxy
           - MARIADB_VERSION=${MARIADB_VERSION}
       volumes:
-        - ${DATA_PATH_HOST}/mariadb:/var/lib/mysql
+        - mariadb_data:/var/lib/mysql
         - ${MARIADB_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
       ports:
         - "${MARIADB_PORT}:3306"
